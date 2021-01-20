@@ -24,7 +24,7 @@ class Contest {
       //  making the request
       final String BASEURL = 'https://clist.by:443/api/v1/json/contest';
       final String KEY =
-          '/?username=ritik28&api_key=73d523a3b95673b30ca7966dc0d5aa51e6f24a13';
+          '/?username=<USERNAME>&api_key=<API_KEY>';
       final String RESOURCES = "&resource__name__in=";
       final String SPACE = "%2C";
       final String PLATFORMS = 'codechef.com' +
@@ -40,7 +40,9 @@ class Contest {
           'atcoder.jp';
       final String FILTERS = "&order_by=start&start__gte=";
       DateTime now = DateTime.now();
+      now = now.add(new Duration(hours:-5,minutes: -30));
       String formattedDate = now.year.toString()+"-" + now.month.toString()+"-" + now.day.toString() + "T" + now.hour.toString() +":"+ now.minute.toString()+":" + now.second.toString();
+      // print(formattedDate);
       Response response = await get(
           BASEURL + KEY + RESOURCES + PLATFORMS + FILTERS + formattedDate);
       Map data = jsonDecode(response.body);
